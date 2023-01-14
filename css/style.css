@@ -16,7 +16,7 @@ h1 {
     margin: 40px 0px 47px;
 }
 
-.container {
+ul {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
