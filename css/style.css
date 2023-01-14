@@ -24,8 +24,8 @@ ul {
 }
 
 .card {
-    width: 200px;
-    height: 250px;
+    width: 117px;
+    height: 146px;
     position: relative;
     margin: 0px 34px 34px;
 }
@@ -43,6 +43,11 @@ ul {
     backface-visibility: hidden;
     transition: all .5s;
     transform-style: preserve-3d;
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
 }
 
 .back-face {
