@@ -32,6 +32,7 @@ ul {
     height: 146px;
     position: relative;
     margin: 0px 34px 34px;
+    cursor: pointer;
 }
 
 .face {
@@ -54,7 +55,28 @@ ul {
     height: 100px;
 }
 
+.front-face {
+    transform: rotateY(0deg);
+}
+
 .back-face {
+    transform: rotateY(180deg);
+}
+
+.virar-carta .front-face {
+    transform: rotateY(-180deg);
+}
+
+.virar-carta .back-face {
+    transform: rotateY(0deg);
+}
+
+.carta-virada {
+    transform: rotateY(0deg);
+}
+
+
+/*.back-face {
     transform: rotateY(180deg);
 }
 
@@ -64,4 +86,4 @@ ul {
 
 .card:hover .front-face {
     transform: rotateY(-180deg);
-}
+}*/

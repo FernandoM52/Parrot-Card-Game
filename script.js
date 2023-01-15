@@ -41,17 +41,15 @@ function embaralhar() {
     return Math.random() - 0.5;
 }
 
-//Distribuir cartas no tabuleiro
+//Distribuir cartas no tabuleiro: loop que manipula o DOM para executar a criação das cartas através do banco de cartas do jogo
 function distribuirCartas() {
     const ul = document.querySelector('ul');
 
     for (let j = 0; j < numCartas; j++) {
         let li = document.createElement('li');
-
         let createCard = document.createElement('div');
         createCard.classList.add("card");
-
-
+        createCard.setAttribute("onclick", "virarCarta(this)");
 
         createCard.innerHTML += `
             <div class="front-face face">
@@ -67,3 +65,9 @@ function distribuirCartas() {
     }
 }
 distribuirCartas();
+
+
+//Virar as cartas ao clicar
+function virarCarta(carta) {
+    carta.classList.add("virar-carta");
+}
