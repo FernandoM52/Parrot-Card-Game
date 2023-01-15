@@ -35,8 +35,35 @@ for (let i = 0; i < numCartas; i++) {
 }
 
 // Embaralhando as cartas do jogo
-cartasDoJogo.sort(comparador);
+cartasDoJogo.sort(embaralhar);
 
-function comparador() {
+function embaralhar() {
     return Math.random() - 0.5;
 }
+
+//Distribuir cartas no tabuleiro
+function distribuirCartas() {
+    const ul = document.querySelector('ul');
+
+    for (let j = 0; j < numCartas; j++) {
+        let li = document.createElement('li');
+
+        let createCard = document.createElement('div');
+        createCard.classList.add("card");
+
+
+
+        createCard.innerHTML += `
+            <div class="front-face face">
+                <img clas="bkgParrot" src="./imgs/back.png">
+            </div>
+            <div class="back-face face">
+                ${cartasDoJogo[j]}
+            </div>
+            `;
+
+        li.appendChild(createCard);
+        ul.appendChild(li);
+    }
+}
+distribuirCartas();
