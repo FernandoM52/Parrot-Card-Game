@@ -50,6 +50,7 @@ function distribuirCartas() {
         let createCard = document.createElement('div');
         createCard.classList.add("card");
         createCard.setAttribute("onclick", "virarCarta(this)");
+        createCard.setAttribute('data-parrot', cartasDoJogo[j]);
 
         createCard.innerHTML += `
             <div class="front-face face">
@@ -66,8 +67,38 @@ function distribuirCartas() {
 }
 distribuirCartas();
 
+let firstClick = '';
+let secondClick = '';
 
 //Virar as cartas ao clicar
-function virarCarta(carta) {
-    carta.classList.add("virar-carta");
+function virarCarta(cartaClicada) {
+    if (cartaClicada.classList.contains("virar-carta")) {
+        return;
+    }
+
+    if (firstClick === '') {
+        cartaClicada.classList.add("virar-carta");
+        firstClick = cartaClicada;
+    } else if (secondClick === '') {
+        cartaClicada.classList.add("virar-carta")
+        secondClick = cartaClicada;
+
+        setTimeout(validaCartas, 1000)
+
+    }
+
+}
+
+function validaCartas() {
+    const primeiraCarta = firstClick.getAttribute("data-parrot");
+    const segundaCarta = secondClick.getAttribute("data-parrot");
+
+    if (primeiraCarta === segundaCarta) {
+
+    } else {
+        firstClick.classList.remove('virar-carta');
+        secondClick.classList.remove('virar-carta');
+        firstClick = '';
+        secondClick = '';
+    }
 }
