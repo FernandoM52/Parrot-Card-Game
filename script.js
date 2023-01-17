@@ -117,5 +117,15 @@ function fimDoJogo() {
     const paresEncontrados = document.querySelectorAll('.parEncontrado');
     if (paresEncontrados.length === numCartas) {
         alert(`Você ganhou em ${jogadas} jogadas!`);
+        jogarNovamente()
+    }
+}
+
+function jogarNovamente() {
+    const jogarNovamente = prompt("Deseja reiniciar a partida?")
+    if (jogarNovamente === "sim") {
+        window.location.reload(true);
+    } else if (jogarNovamente === "não") {
+        return
     }
 }
