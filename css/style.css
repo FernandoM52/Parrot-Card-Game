@@ -26,14 +26,13 @@ ul {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    gap: 34px;
 }
 
 .card {
     width: 117px;
     height: 146px;
     position: relative;
-    margin-right: 34px;
-    margin-bottom: 34px;
     cursor: pointer;
     transition: all .5s;
 }
@@ -83,6 +82,19 @@ ul {
     opacity: 0.5;
 }
 
+@media (max-width: 430px) {
+    h1 {
+        width: 312px;
+        font-size: 36px;
+        line-height: 42px;
+    }
+
+    ul {
+        max-width: 335px;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
 /*.back-face {
     transform: rotateY(180deg);
