@@ -21,6 +21,7 @@ h1 {
 }
 
 ul {
+    max-width: 1080px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -31,8 +32,10 @@ ul {
     width: 117px;
     height: 146px;
     position: relative;
-    margin: 0px 34px 34px;
+    margin-right: 34px;
+    margin-bottom: 34px;
     cursor: pointer;
+    transition: all .5s;
 }
 
 .face {
@@ -56,34 +59,37 @@ ul {
 }
 
 .front-face {
-    transform: rotateY(0deg);
-}
-
-.back-face {
     transform: rotateY(180deg);
 }
 
+.back-face {
+    transform: rotateY(0deg);
+}
+
 .virar-carta .front-face {
-    transform: rotateY(-180deg);
+    transform: rotateY(0deg);
 }
 
 .virar-carta .back-face {
-    transform: rotateY(0deg);
+    transform: rotateY(-180deg);
 }
 
 .carta-virada {
     transform: rotateY(0deg);
 }
 
+.parEncontrado {
+    filter: saturate(0);
+    opacity: 0.5;
+}
+
 
 /*.back-face {
     transform: rotateY(180deg);
 }
-
 .card:hover .back-face {
     transform: rotateY(0deg);
 }
-
 .card:hover .front-face {
     transform: rotateY(-180deg);
 }*/

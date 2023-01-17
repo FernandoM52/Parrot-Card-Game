@@ -16,13 +16,13 @@ function numeroCartas() {
 numeroCartas(); //executa a condição do numero de cartas
 
 //Declarando as imgs dentro do js
-let img1 = `<img src="./imgs/bobrossparrot.gif">`;
-let img2 = `<img src="imgs/explodyparrot.gif">`;
-let img3 = `<img src="imgs/fiestaparrot.gif">`;
-let img4 = `<img src="imgs/metalparrot.gif">`;
-let img5 = `<img src="imgs/revertitparrot.gif">`;
-let img6 = `<img src="imgs/tripletsparrot.gif">`;
-let img7 = `<img src="imgs/unicornparrot.gif">`;
+let img1 = `<img data-test="face-up-image" src="./imgs/bobrossparrot.gif">`;
+let img2 = `<img data-test="face-up-image" src="./imgs/explodyparrot.gif">`;
+let img3 = `<img data-test="face-up-image" src="./imgs/fiestaparrot.gif">`;
+let img4 = `<img data-test="face-up-image" src="./imgs/metalparrot.gif">`;
+let img5 = `<img data-test="face-up-image" src="./imgs/revertitparrot.gif">`;
+let img6 = `<img data-test="face-up-image" src="./imgs/tripletsparrot.gif">`;
+let img7 = `<img data-test="face-up-image" src="./imgs/unicornparrot.gif">`;
 
 let cartasDuplicadas = [img1, img1, img2, img2, img3, img3, img4, img4, img5, img5, img6, img6, img7, img7]; //banco de cartas que será puxado para o banco de cartas do jogo
 let cartasDoJogo = []; //banco de cartas que entrarão no jogo
@@ -31,7 +31,6 @@ let cartasDoJogo = []; //banco de cartas que entrarão no jogo
 de acordo com a quantidade de cartas digitada pelo usuário*/
 for (let i = 0; i < numCartas; i++) {
     cartasDoJogo.push(cartasDuplicadas[i]);
-    console.log(cartasDoJogo);
 }
 
 // Embaralhando as cartas do jogo
@@ -46,17 +45,18 @@ function distribuirCartas() {
     const ul = document.querySelector('ul');
 
     for (let j = 0; j < numCartas; j++) {
-        let li = document.createElement('li');
-        let createCard = document.createElement('div');
+        const li = document.createElement('li');
+        const createCard = document.createElement('div');
         createCard.classList.add("card");
+        createCard.setAttribute("data-test", "card");
         createCard.setAttribute("onclick", "virarCarta(this)");
-        createCard.setAttribute('data-parrot', cartasDoJogo[j]);
+        createCard.setAttribute("data-parrot", cartasDoJogo[j]);
 
         createCard.innerHTML += `
-            <div class="front-face face">
-                <img clas="bkgParrot" src="./imgs/back.png">
-            </div>
             <div class="back-face face">
+                <img clas="bkgParrot" data-test="face-down-image" src="./imgs/back.png">
+            </div>
+            <div class="front-face face">
                 ${cartasDoJogo[j]}
             </div>
             `;
@@ -69,6 +69,7 @@ distribuirCartas();
 
 let firstClick = '';
 let secondClick = '';
+let jogadas = 0;
 
 //Virar as cartas ao clicar
 function virarCarta(cartaClicada) {
@@ -80,13 +81,13 @@ function virarCarta(cartaClicada) {
         cartaClicada.classList.add("virar-carta");
         firstClick = cartaClicada;
     } else if (secondClick === '') {
-        cartaClicada.classList.add("virar-carta")
+        cartaClicada.classList.add("virar-carta");
         secondClick = cartaClicada;
 
         setTimeout(validaCartas, 1000)
 
     }
-
+    jogadas++;
 }
 
 function validaCartas() {
@@ -94,11 +95,24 @@ function validaCartas() {
     const segundaCarta = secondClick.getAttribute("data-parrot");
 
     if (primeiraCarta === segundaCarta) {
+        firstClick.classList.add('parEncontrado');
+        secondClick.classList.add('parEncontrado');
+        firstClick = '';
+        secondClick = '';
+
+        setTimeout(fimDoJogo, 500);
 
     } else {
         firstClick.classList.remove('virar-carta');
         secondClick.classList.remove('virar-carta');
         firstClick = '';
         secondClick = '';
+    }
+}
+
+function fimDoJogo() {
+    const paresEncontrados = document.querySelectorAll('.parEncontrado');
+    if (paresEncontrados.length === numCartas) {
+        alert(`Você ganhou em ${jogadas} jogadas!`)
     }
 }
